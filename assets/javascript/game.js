@@ -1,51 +1,49 @@
 
 // first we need a list of potential words for our hang man game
-const hangNames= ["hulk", "iron man", "thor", "captain america"];
+const hangNames= ["hulk", "ironman", "thor", "captainamerica"];
 // some variables for keeping track of guesses
-let numberOfGuesses = 0;
-let guessesLeft = 10;
+
 
 // next we need the application to randomly choose one of the terms
 //  generates a number with the corresponding terms 
-randomHangName = Math.floor(Math.random() * hangNames.length);
+randomHangName = hangNames[Math.floor(Math.random() * hangNames.length)];
 console.log(randomHangName);
-// grabs one of the names from the array
-gameName = hangNames[randomHangName];
-console.log(gameName);
 // turns selected name into individual letters
-lettersInName = gameName.split("");
+lettersInName = randomHangName.split("");
 console.log(lettersInName);
 // start adding underscores and spaces for names
-let underscores = [];
-for (var i = 0;i < lettersInName.length; i++ ) {
- if (lettersInName[i] === (" ")){
-    underscores.push("-");
- } else {
-     underscores.push("_");
- }
-};
+underscores = lettersInName.length
 console.log(underscores);
 
+numOfSpaces = [];
+for (i = 0; i < underscores; i++) {
+numOfSpaces.push("_");
+};
+console.log(numOfSpaces);
 // targeting paragraph id to print to screen
 let lettersPrint = document.getElementById("letters-guessed");
 let randomWord = document.getElementById("random-word");
-randomWord.textContent = underscores.join(" ");
+randomWord.textContent = numOfSpaces.join(" ");
 
 
 // empty array for guessed letters
 lettersGuessed = []
 // user clicks a key to guess a letter
  document.onkeyup = function (event) {
-     let userGuess = event.key;
-     let letters = /^[A-Za-z]+$/;
+     
     //  validating user key
-     if (userGuess.match(letters)) {
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+     let userGuess = event.key;
      console.log(userGuess);
      lettersGuessed.push(userGuess);
      console.log(lettersGuessed);
      lettersPrint.textContent = lettersGuessed;
+     
+
      }else {
          alert("only use letters")
      };
      
  };
+
+//  take the onkeyup key and compare it to the array of letters and replace the dashes
