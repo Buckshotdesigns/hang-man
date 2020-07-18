@@ -6,7 +6,7 @@ let lettersGuessed = [];
 
 function startGame () {
 // first we need a list of potential words for our hang man game
-const hangNames= ["hulk", "ironman", "thor", "captainamerica"];
+const hangNames= ["hulk", "ironman", "thor", "captainamerica", "spiderman", "wonderwoman, batman"];
 // some variables for keeping track of guesses
 
 lettersGuessed = [];
@@ -46,11 +46,14 @@ function checkLetters(letter) {
         for (j = 0; j < underscores; j++){
             if (lettersInName[j] === letter){
                 numOfSpaces[j] = letter;
+                numberOfGuesses--;
             };
         };
+        
     } else {
         numberOfGuesses--;
     }
+    endRound();
 }
 // targeting paragraph id to print to screen
 
@@ -62,16 +65,18 @@ document.getElementById("wins").innerHTML = "Wins: " + wins;
 document.getElementById("losses").innerHTML = "Losses: " + losses;
 checkWin();
 
+
 };
 function checkWin() {
     if (numOfSpaces.join("") === randomHangName) {
-        alert("you win");
+        setTimeout(function(){alert("you win"); }, 300);
         wins++;
-        startGame();
+        setTimeout(startGame, 400);
+        
     }else if (numberOfGuesses === 0){
-        alert("game over");
+        setTimeout(function(){alert("you lose"); }, 300);
         losses++;
-        startGame();
+        setTimeout(startGame, 400);
     }
 }
 
@@ -97,7 +102,7 @@ startGame();
      console.log(lettersGuessed);
      
      checkLetters(userGuess);
-     endRound();
+     
      
 
      }else {
