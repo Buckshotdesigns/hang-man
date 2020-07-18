@@ -20,6 +20,22 @@ for (i = 0; i < underscores; i++) {
 numOfSpaces.push("_");
 };
 console.log(numOfSpaces);
+
+function checkLetters(letter) {
+    let correctLetter = false;
+    for (i = 0; i < underscores; i++){
+        if (lettersInName[i]=== letter){
+            correctLetter = true;
+        }
+    }
+    if (correctLetter) {
+        for (j = 0; j < underscores; j++){
+            if (lettersInName[j] === letter){
+                underscores[j] = letter;
+            };
+        };
+    };
+}
 // targeting paragraph id to print to screen
 let lettersPrint = document.getElementById("letters-guessed");
 let randomWord = document.getElementById("random-word");
@@ -38,7 +54,7 @@ lettersGuessed = []
      lettersGuessed.push(userGuess);
      console.log(lettersGuessed);
      lettersPrint.textContent = lettersGuessed;
-     
+     checkLetters(userGuess);
 
      }else {
          alert("only use letters")
