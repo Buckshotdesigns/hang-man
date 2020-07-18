@@ -1,9 +1,9 @@
-
+function startGame () {
 // first we need a list of potential words for our hang man game
 const hangNames= ["hulk", "ironman", "thor", "captainamerica"];
 // some variables for keeping track of guesses
 
-
+let lettersGuessed = [];
 // next we need the application to randomly choose one of the terms
 //  generates a number with the corresponding terms 
 randomHangName = hangNames[Math.floor(Math.random() * hangNames.length)];
@@ -21,6 +21,10 @@ numOfSpaces.push("_");
 };
 console.log(numOfSpaces);
 
+document.getElementById("random-word").innerHTML = numOfSpaces.join(" ");
+document.getElementById("letters-guessed").innerHTML = lettersGuessed.join(" ");
+};
+
 function checkLetters(letter) {
     let correctLetter = false;
     for (i = 0; i < underscores; i++){
@@ -31,17 +35,20 @@ function checkLetters(letter) {
     if (correctLetter) {
         for (j = 0; j < underscores; j++){
             if (lettersInName[j] === letter){
-                underscores[j] = letter;
+                numOfSpaces[j] = letter;
             };
         };
     };
 }
 // targeting paragraph id to print to screen
-let lettersPrint = document.getElementById("letters-guessed");
-let randomWord = document.getElementById("random-word");
-randomWord.textContent = numOfSpaces.join(" ");
+
+function endRound () {
+    document.getElementById("random-word").innerHTML = numOfSpaces.join(" ");
+document.getElementById("letters-guessed").innerHTML = lettersGuessed.join(" ");
+}
 
 
+startGame();
 // empty array for guessed letters
 lettersGuessed = []
 // user clicks a key to guess a letter
@@ -53,8 +60,9 @@ lettersGuessed = []
      console.log(userGuess);
      lettersGuessed.push(userGuess);
      console.log(lettersGuessed);
-     lettersPrint.textContent = lettersGuessed;
+     
      checkLetters(userGuess);
+     endRound();
 
      }else {
          alert("only use letters")
