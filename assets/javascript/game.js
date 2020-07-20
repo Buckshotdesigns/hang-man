@@ -5,6 +5,10 @@ let losses = 0;
 let lettersGuessed = [];
 let wrongGuesses = [];
 
+let word = "captain-america";
+word = word.replace(/\s/g, "-");
+console.log(word);
+
 function startGame () {
 // first we need a list of potential words for our hang man game
 const hangNames= ["hulk", "ironman", "thor", "captainamerica", "spiderman", "wonderwoman", "batman", "catwoman"];
@@ -20,14 +24,14 @@ lettersInName = randomHangName.split("");
 console.log(lettersInName);
 // start adding underscores and spaces for names
 underscores = lettersInName.length
-console.log(underscores);
+console.log("underscores = " + underscores);
 numberOfGuesses = underscores + 4;
 
 numOfSpaces = [];
 for (i = 0; i < underscores; i++) {
 numOfSpaces.push("_");
 };
-console.log(numOfSpaces);
+console.log("numOfSpaces = " + numOfSpaces);
 
 document.getElementById("random-word").innerHTML = numOfSpaces.join(" ");
 document.getElementById("letters-guessed").innerHTML = "Letter Guessed: " + lettersGuessed.join(" ");
