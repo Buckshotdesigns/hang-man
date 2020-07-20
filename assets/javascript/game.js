@@ -3,10 +3,11 @@ let numberOfGuesses;
 let wins = 0;
 let losses = 0;
 let lettersGuessed = [];
+let wrongGuesses = [];
 
 function startGame () {
 // first we need a list of potential words for our hang man game
-const hangNames= ["hulk", "ironman", "thor", "captainamerica", "spiderman", "wonderwoman, batman"];
+const hangNames= ["hulk", "ironman", "thor", "captainamerica", "spiderman", "wonderwoman", "batman", "catwoman"];
 // some variables for keeping track of guesses
 
 lettersGuessed = [];
@@ -20,7 +21,7 @@ console.log(lettersInName);
 // start adding underscores and spaces for names
 underscores = lettersInName.length
 console.log(underscores);
-numberOfGuesses = underscores + 2;
+numberOfGuesses = underscores + 4;
 
 numOfSpaces = [];
 for (i = 0; i < underscores; i++) {
@@ -33,6 +34,7 @@ document.getElementById("letters-guessed").innerHTML = "Letter Guessed: " + lett
 document.getElementById("guesses-remaining").innerHTML = "Number of Guesses Remaining: " + numberOfGuesses;
 document.getElementById("wins").innerHTML = "Wins: " + wins;
 document.getElementById("losses").innerHTML = "Losses: " + losses;
+document.getElementById("wrong-guess").innerHTML = "Incorrect letters guessed: " + wrongGuesses;
 };
 
 function checkLetters(letter) {
@@ -51,6 +53,8 @@ function checkLetters(letter) {
         };
         
     } else {
+        wrongGuesses.push(letter)
+        console.log(letter);
         numberOfGuesses--;
     }
     endRound();
@@ -63,6 +67,7 @@ document.getElementById("letters-guessed").innerHTML = "Letters Guessed: " + let
 document.getElementById("guesses-remaining").innerHTML = "Number of Guesses Remaining: " + numberOfGuesses;
 document.getElementById("wins").innerHTML = "Wins: " + wins;
 document.getElementById("losses").innerHTML = "Losses: " + losses;
+document.getElementById("wrong-guess").innerHTML = "Incorrect letters guessed: " + wrongGuesses.join(" ");
 checkWin();
 
 
